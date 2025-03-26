@@ -1,0 +1,137 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id         BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  name       String    @db.Text
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+  expenses   Expense[]
+
+  @@map("categories")
+}
+
+model Expense {
+  id          BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  name        String    @db.Text
+  price       Decimal   @db.Decimal(8, 2)
+  house_id    BigInt    @db.UnsignedBigInt
+  category_id BigInt    @db.UnsignedBigInt
+  worker_id   BigInt    @db.UnsignedBigInt
+  created_at  DateTime? @db.Timestamp(0)
+  updated_at  DateTime? @db.Timestamp(0)
+  house       House     @relation(fields: [house_id], references: [id])
+  category    Category  @relation(fields: [category_id], references: [id])
+  worker      Worker    @relation(fields: [worker_id], references: [id])
+
+  @@map("expenses")
+}
+
+model House {
+  id           BigInt        @id @default(autoincrement()) @db.UnsignedBigInt
+  name         String        @db.Text
+  created_at   DateTime?     @db.Timestamp(0)
+  updated_at   DateTime?     @db.Timestamp(0)
+  expenses     Expense[]
+  reservations Reservation[]
+
+  @@map("houses")
+}
+
+model Reservation {
+  id         BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  name       String    @db.Text
+  house_id   BigInt    @db.UnsignedBigInt
+  start      DateTime  @db.Date
+  finish     DateTime  @db.Date
+  price      Decimal   @db.Decimal(8, 2)
+  worker_id  BigInt    @db.UnsignedBigInt
+  info       String?   @db.Text
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+  house      House     @relation(fields: [house_id], references: [id])
+  worker     Worker    @relation(fields: [worker_id], references: [id])
+
+  @@map("reservations")
+}
+
+model Worker {
+  id           BigInt        @id @default(autoincrement()) @db.UnsignedBigInt
+  name         String        @db.Text
+  isAdmin      Boolean       @default(false)
+  password     String?       @db.VarChar(255)
+  created_at   DateTime?     @db.Timestamp(0)
+  updated_at   DateTime?     @db.Timestamp(0)
+  expenses     Expense[]
+  reservations Reservation[]
+
+  @@map("workers")
+}
+
+model Settings {
+  id                BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  worker_pay_amount Decimal   @default(7000.00) @db.Decimal(8, 2) 
+  euro_rate         Decimal   @default(32.50) @db.Decimal(8, 2)
+  created_at        DateTime? @db.Timestamp(0)
+  updated_at        DateTime? @db.Timestamp(0)
+
+  @@map("settings")
+}
+
+model failed_jobs {
+  id         BigInt   @id @default(autoincrement()) @db.UnsignedBigInt
+  uuid       String   @unique(map: "failed_jobs_uuid_unique") @db.VarChar(255)
+  connection String   @db.Text
+  queue      String   @db.Text
+  payload    String   @db.LongText
+  exception  String   @db.LongText
+  failed_at  DateTime @default(now()) @db.Timestamp(0)
+}
+
+model migrations {
+  id        Int    @id @default(autoincrement()) @db.UnsignedInt
+  migration String @db.VarChar(255)
+  batch     Int
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model password_resets {
+  email      String    @db.VarChar(255)
+  token      String    @db.VarChar(255)
+  created_at DateTime? @db.Timestamp(0)
+
+  @@index([email], map: "password_resets_email_index")
+  @@ignore
+}
+
+model personal_access_tokens {
+  id             BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  tokenable_type String    @db.VarChar(255)
+  tokenable_id   BigInt    @db.UnsignedBigInt
+  name           String    @db.VarChar(255)
+  token          String    @unique(map: "personal_access_tokens_token_unique") @db.VarChar(64)
+  abilities      String?   @db.Text
+  last_used_at   DateTime? @db.Timestamp(0)
+  expires_at     DateTime? @db.Timestamp(0)
+  created_at     DateTime? @db.Timestamp(0)
+  updated_at     DateTime? @db.Timestamp(0)
+
+  @@index([tokenable_type, tokenable_id], map: "personal_access_tokens_tokenable_type_tokenable_id_index")
+}
+
+model users {
+  id                BigInt    @id @default(autoincrement()) @db.UnsignedBigInt
+  name              String    @db.VarChar(255)
+  email             String    @unique(map: "users_email_unique") @db.VarChar(255)
+  email_verified_at DateTime? @db.Timestamp(0)
+  password          String    @db.VarChar(255)
+  remember_token    String?   @db.VarChar(100)
+  created_at        DateTime? @db.Timestamp(0)
+  updated_at        DateTime? @db.Timestamp(0)
+}
