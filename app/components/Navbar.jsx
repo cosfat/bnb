@@ -83,14 +83,11 @@ export default function Navbar() {
           </div>
           
           {currentUser && (
-            <div className="flex items-center">
-              <span className="mr-4 text-gray-700">
-                Hoş geldin, <span className="font-medium">{currentUser.name}</span>
-                {currentUser.isAdmin && <span className="ml-2 text-xs text-white bg-blue-600 px-2 py-1 rounded-full">Admin</span>}
-              </span>
+            <div className="hidden sm:flex items-center">
+              {currentUser.isAdmin && <span className="ml-2 text-xs text-white bg-blue-600 px-2 py-1 rounded-full">Admin</span>}
               <button
                 onClick={logout}
-                className="px-3 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none"
+                className="ml-2 px-3 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none"
               >
                 Çıkış Yap
               </button>
@@ -143,6 +140,14 @@ export default function Navbar() {
                   Ayarlar
                 </Link>
               </>
+            )}
+            {currentUser && (
+              <button
+                onClick={logout}
+                className="block w-full text-left pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-red-600 hover:bg-gray-50 hover:border-red-300 hover:text-red-800"
+              >
+                Çıkış Yap
+              </button>
             )}
           </div>
         </div>
