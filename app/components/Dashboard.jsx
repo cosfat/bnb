@@ -26,7 +26,7 @@ export default function Dashboard({ stats }) {
           textColor="text-red-600" 
         />
         <StatCard 
-          title="Toplam Gelir" 
+          title="Gelirler" 
           value={stats.totalRevenue.toLocaleString('tr-TR', { style: 'currency', currency: 'TRY' })}
           subValue={stats.totalRevenueInEuro.toLocaleString('tr-TR', { style: 'currency', currency: 'EUR' })}
           icon="💸" 
