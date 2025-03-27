@@ -12,7 +12,7 @@ export default function Dashboard({ stats }) {
           textColor={stats.profit >= 0 ? "text-emerald-600" : "text-rose-600"} 
         />
         <StatCard 
-          title="Toplam Rezervasyon" 
+          title="Rezervasyonlar" 
           value={stats.reservationCount} 
           icon="📅" 
           color="bg-green-50" 
