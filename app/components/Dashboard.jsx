@@ -19,7 +19,7 @@ export default function Dashboard({ stats }) {
           textColor="text-green-600" 
         />
         <StatCard 
-          title="Toplam Gider" 
+          title="Giderler" 
           value={stats.totalExpense.toLocaleString('tr-TR', { style: 'currency', currency: 'TRY' })}
           icon="💰" 
           color="bg-red-50" 
