@@ -263,7 +263,7 @@ export default function Home() {
     reservations.forEach(reservation => {
       const startDate = new Date(reservation.start);
       startDate.setHours(0, 0, 0, 0);
-      const endDate = new Date(reservation.end);
+      const endDate = new Date(reservation.finish);
       endDate.setHours(0, 0, 0, 0);
 
       const house = houses.find(h => h.id === reservation.house_id);
