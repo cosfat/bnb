@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Dashboard from "./components/Dashboard";
 import LoginForm from "./components/LoginForm";
+import ReservationCalendar from "./components/ReservationCalendar";
 import { useExpenses } from "./hooks/useExpenses";
 import { useReservations } from "./hooks/useReservations";
 import { useHouses } from "./hooks/useHouses";
@@ -424,6 +425,23 @@ export default function Home() {
           >
                 →
           </button>
+            </div>
+          </div>
+
+          {/* Rezervasyon Takvimi */}
+          <div className="mb-8">
+            <div className="bg-white rounded-lg shadow p-6">
+              <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                Rezervasyon Takvimi
+              </h3>
+              <ReservationCalendar 
+                reservations={reservations} 
+                houses={houses}
+                currentMonth={currentMonth}
+                currentYear={currentYear}
+                goToPreviousMonth={goToPreviousMonth}
+                goToNextMonth={goToNextMonth}
+              />
             </div>
           </div>
 
