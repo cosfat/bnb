@@ -212,6 +212,18 @@ export default function ReservationCalendar({ reservations, houses, currentMonth
           value={calendarValue}
           onActiveStartDateChange={handleActiveStartDateChange}
           tileContent={tileContent}
+          locale="tr-TR"
+          formatMonthYear={(locale, date) => {
+            const months = [
+              'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
+              'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'
+            ];
+            return `${months[date.getMonth()]} ${date.getFullYear()}`;
+          }}
+          formatShortWeekday={(locale, date) => {
+            const days = ['Pzr', 'Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cts'];
+            return days[date.getDay()];
+          }}
           tileClassName={({ date }) => {
             if (!date) return '';
             
