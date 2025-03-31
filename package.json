@@ -1,7 +1,7 @@
 {
   "name": "bnb",
   "version": "1.0.0",
-  "description": "Airbnb Yönetim Sistemi",
+  "description": "Zafer Home",
   "main": "index.js",
   "scripts": {
     "dev": "next dev",

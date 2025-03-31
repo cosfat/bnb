@@ -108,7 +108,7 @@ export default function ReservationCalendar({ reservations, houses, currentMonth
         <div className="relative w-full h-full">
           {isToday && (
             <div className="absolute top-0 left-0 right-0 bottom-0 flex justify-center items-center pointer-events-none">
-              <div className="w-7 h-7 rounded-full border-2 border-blue-500" />
+              
             </div>
           )}
           <div className="absolute bottom-0 left-0 right-0 flex flex-wrap justify-center">

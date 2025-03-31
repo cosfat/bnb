@@ -407,8 +407,7 @@ export default function Home() {
       <Navbar />
       <div className="flex-1 bg-gray-100 p-4">
         <div className="max-w-7xl mx-auto">
-          <div className="flex justify-between items-center mb-6">
-            <h1 className="text-2xl font-bold text-gray-800">Dashboard</h1>
+          <div className="flex justify-center items-center mb-6">
             <div className="flex items-center space-x-2">
           <button 
             onClick={goToPreviousMonth}
@@ -565,22 +564,22 @@ export default function Home() {
                 <table className="min-w-full divide-y divide-gray-200">
                   <thead className="bg-gray-50">
                     <tr>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th scope="col" className="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Çalışan
                       </th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Rezervasyon Sayısı
+                      <th scope="col" className="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Mesai
                       </th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Harcamalar
+                      <th scope="col" className="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Harcama
                       </th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Harcama Hesaplaşması
+                      <th scope="col" className="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Harcama Hes.
                       </th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Rezervasyon Kazancı
+                      <th scope="col" className="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Mesai Üc.
                       </th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th scope="col" className="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Final Hesaplaşma
                       </th>
                     </tr>
@@ -588,16 +587,16 @@ export default function Home() {
                   <tbody className="bg-white divide-y divide-gray-200">
                     {workersSettlement.map((worker) => (
                       <tr key={worker.workerId}>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                        <td className="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
                           {worker.workerName}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-500">
                           {worker.reservationCount}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-red-600">
+                        <td className="px-3 py-2 whitespace-nowrap text-sm text-red-600">
                           ₺{worker.expenses.toLocaleString('tr-TR', {minimumFractionDigits: 2})}
                         </td>
-                        <td className="px-6 py-4 text-sm text-gray-500">
+                        <td className="px-3 py-2 text-sm text-gray-500">
                           {worker.expenseSettlements.map((settlement, index) => (
                             <div key={index} className="mb-1">
                               {settlement.from === worker.workerName ? (
@@ -612,10 +611,10 @@ export default function Home() {
                             </div>
                           ))}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-green-600">
+                        <td className="px-3 py-2 whitespace-nowrap text-sm text-green-600">
                           ₺{worker.earnings.toLocaleString('tr-TR', {minimumFractionDigits: 2})}
                         </td>
-                        <td className="px-6 py-4 text-sm text-gray-500">
+                        <td className="px-3 py-2 text-sm text-gray-500">
                           {worker.finalSettlements.map((settlement, index) => (
                             <div key={index} className="mb-1">
                               {settlement.from === worker.workerName ? (
