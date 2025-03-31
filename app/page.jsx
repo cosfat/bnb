@@ -495,16 +495,14 @@ export default function Home() {
           {/* Günlük Ev Durumları */}
           <div className="mb-8 grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* Dolu Evler */}
-            <div className="bg-white rounded-lg shadow p-6">
-              <h3 className="text-lg font-semibold text-gray-800 mb-4">
-                Şu An Dolu Evler
-                {houseStatuses?.currentlyOccupied.length > 0 && (
+            {houseStatuses?.currentlyOccupied.length > 0 && (
+              <div className="bg-white rounded-lg shadow p-6">
+                <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                  Şu An Dolu Evler
                   <span className="ml-2 text-sm font-normal text-gray-500">
                     ({houseStatuses.currentlyOccupied.length} ev)
                   </span>
-                )}
-              </h3>
-              {houseStatuses?.currentlyOccupied.length > 0 ? (
+                </h3>
                 <div className="space-y-2">
                   {houseStatuses.currentlyOccupied.map(house => (
                     <div key={house.id} className="flex items-center">
@@ -513,22 +511,18 @@ export default function Home() {
                     </div>
                   ))}
                 </div>
-              ) : (
-                <p className="text-gray-500">Şu an dolu ev yok</p>
-              )}
-            </div>
+              </div>
+            )}
 
             {/* Check-in Yapılacak Evler */}
-            <div className="bg-white rounded-lg shadow p-6">
-              <h3 className="text-lg font-semibold text-gray-800 mb-4">
-                Bugün Check-in
-                {houseStatuses?.checkingIn.length > 0 && (
+            {houseStatuses?.checkingIn.length > 0 && (
+              <div className="bg-white rounded-lg shadow p-6">
+                <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                  Bugün Check-in
                   <span className="ml-2 text-sm font-normal text-gray-500">
                     ({houseStatuses.checkingIn.length} ev)
                   </span>
-                )}
-              </h3>
-              {houseStatuses?.checkingIn.length > 0 ? (
+                </h3>
                 <div className="space-y-2">
                   {houseStatuses.checkingIn.map(house => (
                     <div key={house.id} className="flex items-center">
@@ -537,22 +531,18 @@ export default function Home() {
                     </div>
                   ))}
                 </div>
-              ) : (
-                <p className="text-gray-500">Bugün check-in yok</p>
-              )}
-            </div>
+              </div>
+            )}
 
             {/* Check-out Yapılacak Evler */}
-            <div className="bg-white rounded-lg shadow p-6">
-              <h3 className="text-lg font-semibold text-gray-800 mb-4">
-                Bugün Check-out
-                {houseStatuses?.checkingOut.length > 0 && (
+            {houseStatuses?.checkingOut.length > 0 && (
+              <div className="bg-white rounded-lg shadow p-6">
+                <h3 className="text-lg font-semibold text-gray-800 mb-4">
+                  Bugün Check-out
                   <span className="ml-2 text-sm font-normal text-gray-500">
                     ({houseStatuses.checkingOut.length} ev)
                   </span>
-                )}
-              </h3>
-              {houseStatuses?.checkingOut.length > 0 ? (
+                </h3>
                 <div className="space-y-2">
                   {houseStatuses.checkingOut.map(house => (
                     <div key={house.id} className="flex items-center">
@@ -561,11 +551,9 @@ export default function Home() {
                     </div>
                   ))}
                 </div>
-              ) : (
-                <p className="text-gray-500">Bugün check-out yok</p>
-              )}
-            </div>
-        </div>
+              </div>
+            )}
+          </div>
         
         <Dashboard stats={stats} />
         
